@@ -1,0 +1,16 @@
+# Archivos de compilación
+bin/
+obj/
+*.suo
+*.user
+
+# Archivos de salida de las pruebas
+bin/Debug/
+bin/Release/
+TestResults/
+
+# Archivos de configuración y dependencias locales
+*.local
+
+# Archivos de Visual Studio
+.vs/

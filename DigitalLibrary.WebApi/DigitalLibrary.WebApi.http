@@ -1,0 +1,6 @@
+@DigitalLibrary.WebApi_HostAddress = http://localhost:5298
+
+GET {{DigitalLibrary.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
