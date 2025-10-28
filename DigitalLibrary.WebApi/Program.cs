@@ -1,3 +1,6 @@
+using DigitalLibrary.WebApi.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +9,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<DigitalLibraryAppDbContext>(options =>
+options.UseSqlServer("Server=localhost,1433;Database=DigitalLibraryAppDB;User Id=sa;Password=Admin123!;TrustServerCertificate=True;")
+    );
 
 var app = builder.Build();
 
