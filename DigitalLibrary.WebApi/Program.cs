@@ -1,3 +1,5 @@
+using DigitalLibrary.WebApi.Configurations;
+using DigitalLibrary.WebApi.Literals;
 using DigitalLibrary.WebApi.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,9 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<DigitalLibraryAppDbContext>(options =>
-options.UseSqlServer("Server=localhost,1433;Database=DigitalLibraryAppDB;User Id=sa;Password=Admin123!;TrustServerCertificate=True;")
-    );
+builder.Services.SetDatabaseConfiguration();
 
 var app = builder.Build();
 
