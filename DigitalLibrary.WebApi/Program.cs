@@ -13,6 +13,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.SetDatabaseConfiguration();
+builder.Services.SetDigitalLibraryAuthConfiguration();
 
 var app = builder.Build();
 
@@ -25,6 +26,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

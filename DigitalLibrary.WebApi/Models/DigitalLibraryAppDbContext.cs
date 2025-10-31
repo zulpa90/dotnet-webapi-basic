@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 
 namespace DigitalLibrary.WebApi.Models
 {
-    public class DigitalLibraryAppDbContext : DbContext
+    public class DigitalLibraryAppDbContext : IdentityDbContext<IdentityUser>
 
     {
         public DigitalLibraryAppDbContext(DbContextOptions<DigitalLibraryAppDbContext> options) : base(options) 
@@ -17,6 +19,21 @@ namespace DigitalLibrary.WebApi.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            base.OnModelCreating(modelBuilder);
+
+            /*modelBuilder.Entity<IdentityUser>()
+                .HasKey(u => u.Id);
+
+            modelBuilder.Entity<IdentityRole>()
+                .HasKey(r => r.Id);
+
+            modelBuilder.Entity<IdentityUserRole<string>>()
+                .HasKey(r => new { r.UserId, r.RoleId });
+
+            modelBuilder.Entity<IdentityUserLogin<string>>()
+                .HasKey(l => new { l.LoginProvider, l.ProviderKey });*/
+
             modelBuilder.Entity<User>(entity =>
             {
                 entity.Property(u => u.userId)
