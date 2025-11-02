@@ -16,7 +16,8 @@
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "DIGITAL_LIBRARY_CONNECTION_STRING": "\"Server=localhost,1433;Database=DigitalLibraryAppDB;User Id=sa;Password=Admin123!;TrustServerCertificate=True;\""
+        "DIGITAL_LIBRARY_CONNECTION_STRING": "Server=localhost,1433;Database=DigitalLibraryAppDB;User Id=sa;Password=Admin123!;TrustServerCertificate=True;",
+        "JWT_KEY": "A2*7gF9@D#1hJ$5mNpRtVwYzZ&k8zbx/s1@1nM*H"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7013;http://localhost:5298"
