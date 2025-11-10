@@ -6,6 +6,7 @@ using DigitalLibrary.WebApi.Literals;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -26,13 +27,7 @@ namespace DigitalLibrary.WebApi.Controllers
         [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterRequetDto model)
         {
-            var user = new IdentityUser
-            {
-                UserName = model.email,
-                Email = model.email
-            };
-
-            var result = await _userManager.CreateAsync(user, model.password);
+            
             if (!result.Succeeded)
             {
                 return BadRequest(result.Errors);
@@ -75,6 +70,41 @@ namespace DigitalLibrary.WebApi.Controllers
             }
 
             return Unauthorized();
+        }
+
+        [HttpGet]
+
+        public async Task<IActionResult<IEnumerable<UserDto>>> GetAllUsers()
+        {
+            var users = _userManager.Users
+                .Select(u => new UserDto
+                {
+                    Id = u.Id,
+                    Email = u.Email,
+                    UserName = u.UserName
+                })
+                .ToList();
+
+            return Ok(users);
+        }
+
+        [HttpGet("{{userId}}")]
+
+        public async Task<IActionResult<UserDto>>>> GetUserById(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if (user == null)
+                return NotFound(new { message = "Usuario no encontrado." });
+
+            var userDto = new UserDto
+            {
+                Id = user.Id,
+                Email = user.Email,
+                UserName = user.UserName
+            };
+
+            return Ok(userDto);
         }
     }
 }
